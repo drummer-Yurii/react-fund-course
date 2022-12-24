@@ -10,6 +10,11 @@ function App() {
   ])
   return (
     <div className="App">
+      <form>
+        <input type="text" placeholder="Название поста" />
+        <input type="text" placeholder="Описание поста" />
+        <button>Создать пост</button>
+      </form>
       <PostList posts={posts} title="Посты про JS"/>
     </div>
   );
