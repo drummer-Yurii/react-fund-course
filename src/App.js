@@ -10,18 +10,15 @@ function App() {
     { id: 1, title: 'JavaScript', body: 'description' },
     { id: 2, title: 'JavaScript 2', body: 'description' },
     { id: 3, title: 'JavaScript 3', body: 'description' }
-  ])
+  ]) 
 
-  const addNewPost = (e) => {
-    e.preventDefault();
-    
-    setPosts([...posts, {...post, id: Date.now()}]);
-    setPost({title: '', body: ''})
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost])
   }
 
   return (
     <div className="App">
-      <PostForm />
+      <PostForm create={createPost} />
       <PostList posts={posts} title="Посты про JS" />
     </div>
   );
