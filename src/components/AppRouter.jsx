@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { AuthContext } from '../context';
 import {publicRoutes, privateRoutes} from '../router';
+import Loader from './UI/Loader/Loader';
 
 const AppRouter = () => {
-  const isAuth = false;
+  const {isAuth, isLoading} = useContext(AuthContext) 
+  console.log(isAuth);
+
+  if (isLoading) {
+    return <Loader />
+  }
+
   return (
     isAuth
       ? 
@@ -12,7 +20,8 @@ const AppRouter = () => {
         <Route 
           component={route.component} 
           path={route.path} 
-          exact={route.exact} 
+          exact={route.exact}
+          key={route.path}
         />
       )}
       <Redirect to='/posts' />
@@ -23,7 +32,8 @@ const AppRouter = () => {
         <Route 
           component={route.component} 
           path={route.path} 
-          exact={route.exact} 
+          exact={route.exact}
+          key={route.path} 
         />
       )}
       <Redirect to='/login' />
