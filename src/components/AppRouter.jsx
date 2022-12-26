@@ -17,10 +17,7 @@ const AppRouter = () => {
       <Route exact path="/posts/:id">
         <PostIdPage />
       </Route>
-      <Route path="/error">
-        <Error />
-      </Route>
-      <Redirect to='/error' />
+      <Redirect to='/posts' />
     </Switch>
   );
 };
