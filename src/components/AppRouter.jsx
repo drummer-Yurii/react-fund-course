@@ -1,15 +1,14 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import About from '../pages/About';
-import Posts from '../pages/Posts';
-import Error from '../pages/Error';
-import PostIdPage from '../pages/PostIdPage';
-import { routes } from '../router';
+import {publicRoutes, privateRoutes} from '../router';
 
 const AppRouter = () => {
+  const isAuth = false;
   return (
-    <Switch>
-      {routes.map(route => 
+    isAuth
+      ? 
+      <Switch>
+      {privateRoutes.map(route => 
         <Route 
           component={route.component} 
           path={route.path} 
@@ -18,6 +17,18 @@ const AppRouter = () => {
       )}
       <Redirect to='/posts' />
     </Switch>
+      :
+      <Switch>
+      {publicRoutes.map(route => 
+        <Route 
+          component={route.component} 
+          path={route.path} 
+          exact={route.exact} 
+        />
+      )}
+      <Redirect to='/login' />
+    </Switch>
+    
   );
 };
 
